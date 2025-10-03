@@ -1,71 +1,39 @@
-# =====================================================
-# ROPEARTLAB - ARQUIVOS IGNORADOS PELO GIT
-# =====================================================
-
-# Dependências
+# Dependencies
 node_modules/
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
-# Arquivos de ambiente
+# Environment variables
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.production
 
-# Logs
-logs
-*.log
-
-# Cache e temporários
-.cache
-.tmp
-.temp
-
-# Arquivos de sistema
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
-*~
-
-# IDE
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
-
-# Build e dist
+# Build outputs
 dist/
 build/
-.next/
-.nuxt/
-.vuepress/dist
+out/
 
-# Uploads (se houver)
-uploads/
-public/uploads/
+# Logs
+*.log
+logs/
 
-# Banco de dados local
-*.sqlite
-*.db
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# Certificados
-*.pem
-*.key
-*.crt
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# Arquivos de backup
-*.backup
-*.bak
-*.orig
+# Rust artifacts (se algum aparecer por engano)
+target/
+Cargo.lock
 
-# Coverage
-coverage/
-.nyc_output
-
-# Arquivos específicos do projeto
-config.env
-config.local.js
+# Deployment
+.render/

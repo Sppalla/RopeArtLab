@@ -1,0 +1,26 @@
+{
+  "name": "ropeartlab",
+  "description": "Node.js Web Application - Pet Sales Catalog",
+  "repository": "https://github.com/Sppalla/RopeArtLab",
+  "logo": "https://via.placeholder.com/100x100/1a4722/ffffff?text=RopeArtLab",
+  "keywords": ["node", "express", "web", "ecommerce"],
+  "stack": "heroku-18",
+  "env": {
+    "NODE_ENV": {
+      "description": "Node.js environment",
+      "value": "production"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "starter"
+    }
+  },
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
