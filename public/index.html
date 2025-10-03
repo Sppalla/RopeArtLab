@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RopeArtLab - Sistema Funcionando!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2c1810, #4a341c);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .status {
+            font-size: 2rem;
+            color: #4ade80;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #d4af37;
+        }
+        
+        .links {
+            margin-top: 2rem;
+        }
+        
+        .links a {
+            color: #d4af37;
+            text-decoration: none;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #d4af37;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .links a:hover {
+            background: #d4af37;
+            color: #2c1810;
+        }
+        
+        .timestamp {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🎨 RopeArtLab</div>
+        
+        <div class="status">
+            ✅ Deploy funcionando!
+            <span>🚀</span>
+        </div>
+        
+        <div class="message">
+            🎉 <strong>Sucesso!</strong> O sistema RopeArtLab está funcionando no Render.com!
+            <br><br>
+            ✅ Servidor Node.js ativo<br>
+            ✅ Banco PostgreSQL configurado<br>
+            ✅ Sistema híbrido funcionando<br>
+            ✅ Frontend e Admin ativos
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">📦</div>
+                <div class="feature-title">Catálogo</div>
+                <div>Sistema completo de produtos</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">👥</div>
+                <div class="feature-title">Clientes</div>
+                <div>Cadastro e gestão</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <div class="feature-title">Admin</div>
+                <div>Painel administrativo</div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">💰</div>
+                <div class="feature-title">Vendas</div>
+                <div>Sistema de pedidos</div>
+            </div>
+        </div>
+        
+        <div class="links">
+            <a href="/src/index.html">🏠 Site Principal</a>
+            <a href="/src/admin.html">🔧 Admin</a>
+            <a href="/health">💚 Health Check</a>
+        </div>
+        
+        <div class="timestamp">
+            Último deploy: <span id="timestamp"></span>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('timestamp').textContent = new Date().toLocaleString('pt-BR');
+    </script>
+</body>
+</html>
