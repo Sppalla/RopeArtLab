@@ -1,0 +1,159 @@
+/* Placeholders para imagens do RopeArtLab */
+
+/* Placeholder genérico */
+.image-placeholder {
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    border: 2px solid #0984e3;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.image-placeholder:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.image-placeholder .icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.image-placeholder .text {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.image-placeholder .subtitle {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Logo específico */
+.logo-placeholder {
+    background: linear-gradient(135deg, #2d3436, #636e72);
+    border-color: #2d3436;
+    min-height: 60px;
+    max-width: 200px;
+    flex-direction: row;
+}
+
+.logo-placeholder .icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+.logo-placeholder .text {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+
+/* Splash específico */
+.splash-placeholder {
+    background: linear-gradient(135deg, #00cec9, #55a3ff);
+    place-content: 300px;
+    border-radius: 20px;
+    min-height: 250px;
+}
+
+.splash-placeholder .icon {
+    font-size: 4rem;
+}
+
+.splash-placeholder .text {
+    font-size: 1.4rem;
+}
+
+/* Imagens de produtos */
+.product-image-placeholder {
+    background: linear-gradient(135deg, #fd79a8, #e84393);
+    border-color: #e84393;
+}
+
+/* Imagem quebrada genérica (fallback) */
+img[src*="images/"] {
+    background: linear-gradient(45deg, #f4f4f4, #e4e4e4);
+    border: 2px dashed #ccc;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Container de imagem quebrada */
+.image-broken {
+    background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+    border: 2px solid #74b9ff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: #2d3436;
+    font-weight: bold;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-broken .icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.image-broken .text {
+    font-size: 1.1rem;
+}
+
+.image-broken .subtitle {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-top: 5px;
+}
+
+/* Logo específico */
+.logo[src*="images/logo.jpg"] {
+    background: linear-gradient(45deg, #74b9ff, #0984e3);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo[src*="images/logo.jpg"]:before {
+    content: "🎨";
+    margin-right: 8px;
+}
+
+/* Produtos específicos */
+.product-image[src*="images/"] {
+    background: linear-gradient(45deg, #fd79a8, #e84393);
+    border-color: #e84393;
+}
+
+/* Splash image */
+.splash-image[src*="images/"] {
+    background: linear-gradient(45deg, #00cec9, #55a3ff);
+    border-color: #55a3ff;
+}
+
+.splash-image[src*="images/"]:before {
+    content: "🐕 Cachorro";
+    color: white;
+    font-weight: bold;
+}
+
+.splash-image[src*="images/"]:after {
+    content: "Corda artesanal";
+    color: white;
+}
