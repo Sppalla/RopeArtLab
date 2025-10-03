@@ -4,8 +4,9 @@
 services:
   - type: web
     name: ropeartlab-web
-    repo: https://github.com/USERNAME/ropeartlab-repo # Substituir pelo seu repositório
+    repo: https://github.com/Sppalla/RopeArtLab.git
     branch: main
+    runtime: node
     buildCommand: npm install
     startCommand: npm start
     envVars:
