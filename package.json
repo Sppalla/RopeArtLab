@@ -1,11 +1,23 @@
 {
-  "name": "ropeartlab",
+  "name": "ropeartlab-nodejs-web-app",
   "version": "1.0.0",
+  "description": "Node.js Web Application - RopeArtLab Pet Sales Catalog",
   "main": "index.js",
+  "engine": "node",
+  "engines": {
+    "node": "18.19.0",
+    "npm": "9.2.0"
+  },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "npm install",
+    "postinstall": "echo 'Node.js application ready!'"
   },
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "keywords": ["nodejs", "web", "express"],
+  "directories": {
+    "lib": "src"
   }
 }
