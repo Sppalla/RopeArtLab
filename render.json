@@ -1,0 +1,24 @@
+{
+  "name": "ropeartlab-web",
+  "type": "web",
+  "region": "oregon",
+  "branch": "main",
+  "runtime": "node",
+  "buildCommand": "npm install",
+  "startCommand": "npm start",
+  "plan": "starter",
+  "envVars": [
+    {
+      "key": "NODE_ENV",
+      "value": "production"
+    },
+    {
+      "key": "PORT",
+      "value": "10000"
+    },
+    {
+      "key": "NODE_VERSION",
+      "value": "20.18.0"
+    }
+  ]
+}
