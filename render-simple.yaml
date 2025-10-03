@@ -1,0 +1,8 @@
+# Render.com Service Configuration - VERSÃO SIMPLES
+services:
+  - type: web
+    name: ropeartlab-simple
+    repo: https://github.com/Sppalla/RopeArtLab.git
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
