@@ -726,8 +726,8 @@ class AdminSystem {
                     id: 1,
                 name: 'Corda Amarela e Laranja',
                 description: 'Uma combinação vibrante de amarelo e laranja que traz energia e alegria. Perfeita para atividades ao ar livre e decoração moderna.',
-                image: '../../images/amarelo e laranja.jpg',
-                images: ['../../images/amarelo e laranja.jpg'],
+            image: '', // Placeholder em vez de imagem real
+            images: [], // Placeholder em vez de imagem real
                 category: 'Moderna',
                     stock: 10,
                     active: true,
@@ -746,8 +746,8 @@ class AdminSystem {
                     id: 2,
                 name: 'Corda Azul Bebê e Chumbo',
                 description: 'Elegante mistura de azul suave e chumbo, criando um contraste sofisticado. Ideal para ambientes contemporâneos e minimalistas.',
-                    image: '../../images/azul bebe e chumbo.jpg',
-                    images: ['../../images/azul bebe e chumbo.jpg'],
+                    image: '', // Placeholder em vez de imagem real
+                    images: [], // Placeholder em vez de imagem real
                 category: 'Elegância',
                     stock: 8,
                     active: true,
@@ -766,8 +766,8 @@ class AdminSystem {
                 id: 3,
                 name: 'Corda Marinho e Vermelho',
                 description: 'Combinação clássica e atemporal de azul marinho com vermelho vibrante. Uma peça que nunca sai de moda.',
-                image: '../../images/marinho e vermelho.jpg',
-                images: ['../../images/marinho e vermelho.jpg'],
+                image: '', // Placeholder em vez de imagem real
+                images: [], // Placeholder em vez de imagem real
                 category: 'Clássico',
                 stock: 7,
                 active: true,
@@ -786,8 +786,8 @@ class AdminSystem {
                 id: 4,
                 name: 'Corda Militar e Marrom',
                 description: 'Tons terrosos que remetem à natureza e aventura. Perfeita para quem busca um estilo rústico e autêntico.',
-                image: '../../images/militar e marrom.jpg',
-                images: ['../../images/militar e marrom.jpg'],
+                image: '', // Placeholder em vez de imagem real
+                images: [], // Placeholder em vez de imagem real
                 category: 'Rústico',
                 stock: 5,
                 active: true,
@@ -806,8 +806,8 @@ class AdminSystem {
                 id: 5,
                 name: 'Corda Rosa Bebê e Verde Bebê',
                 description: 'Delicada combinação de rosa e verde pastel, criando um ambiente suave e acolhedor. Ideal para quartos e espaços relaxantes.',
-                image: '../../images/rosa bebe e verde bebe.jpg',
-                images: ['../../images/rosa bebe e verde bebe.jpg'],
+                image: '', // Placeholder em vez de imagem real
+                images: [], // Placeholder em vez de imagem real
                 category: 'Delicado',
                 stock: 8,
                 active: true,
@@ -826,8 +826,8 @@ class AdminSystem {
                 id: 6,
                 name: 'Corda Rosa Pink e Lilás',
                 description: 'Gradiente romântico de rosa pink para lilás, perfeito para criar um ambiente feminino e elegante.',
-                image: '../../images/rosa pink e lilas.jpg',
-                images: ['../../images/rosa pink e lilas.jpg'],
+                image: '', // Placeholder em vez de imagem real
+                images: [], // Placeholder em vez de imagem real
                 category: 'Romântico',
                 stock: 6,
                 active: true,
@@ -846,8 +846,8 @@ class AdminSystem {
                 id: 7,
                 name: 'Corda Roxo e Laranja',
                 description: 'Combinação vibrante e moderna de roxo profundo com laranja energético. Uma peça que chama atenção e adiciona personalidade ao ambiente.',
-                image: '../../images/roxo e laranja .jpg',
-                images: ['../../images/roxo e laranja .jpg'],
+                image: '', // Placeholder em vez de imagem real
+                images: [], // Placeholder em vez de imagem real
                 category: 'Moderno',
                 stock: 9,
                 active: true,
@@ -866,8 +866,8 @@ class AdminSystem {
                 id: 8,
                 name: 'Corda Verde e Cinza',
                 description: 'Harmonia perfeita entre verde natural e cinza neutro. Uma escolha versátil que combina com qualquer decoração.',
-                image: '../../images/verde e cinza.jpg',
-                images: ['../../images/verde e cinza.jpg'],
+                image: '', // Placeholder em vez de imagem real
+                images: [], // Placeholder em vez de imagem real
                 category: 'Versátil',
                 stock: 12,
                 active: true,
@@ -908,7 +908,10 @@ class AdminSystem {
         productsGrid.innerHTML = products.map(product => `
             <div class="product-card-admin" data-product-id="${product.id}">
                 <div class="product-image-container">
-                    <img src="${product.images && product.images[0] ? product.images[0] : product.image}" alt="${product.name}" class="product-image" onerror="this.src='../../images/logo.jpg'">
+                    <div class="image-placeholder product-image-placeholder">
+                        <span class="icon">🧶</span>
+                        <span class="text">${product.name}</span>
+                    </div>
                     <div class="product-status ${product.active ? 'active' : 'inactive'}">
                         ${product.active ? 'Ativo' : 'Inativo'}
                     </div>
@@ -2134,7 +2137,10 @@ window.showTrash = function() {
             return `
                 <div class="trash-item ${isExpired ? 'expired' : ''}">
                     <div class="trash-item-header">
-                        <img src="${item.image}" alt="${item.name}" class="trash-item-image" onerror="this.src='../../images/logo.jpg'">
+                        <div class="image-placeholder product-image-placeholder" style="width: 60px; height: 60px; min-height: 60px;">
+                            <span class="icon">🗑️</span>
+                            <span class="text">${item.name}</span>
+                        </div>
                         <div class="trash-item-info">
                             <h4>${item.name}</h4>
                             <p>${item.category}</p>
@@ -2378,17 +2384,9 @@ window.testProducts = function() {
     console.log('Produtos:', adminSystem.products);
     console.log('Container:', document.getElementById('products-grid'));
     
-    // Testar caminhos das imagens
-    const testImages = [
-        '../../images/amarelo e laranja.jpg',
-        '../../images/azul bebe e chumbo.jpg',
-        '../../images/marinho e vermelho.jpg',
-        '../../images/militar e marrom.jpg',
-        '../../images/rosa bebe e verde bebe.jpg',
-        '../../images/rosa pink e lilas.jpg',
-        '../../images/roxo e laranja .jpg',
-        '../../images/verde e cinza.jpg'
-    ];
+    // Não testar mais imagens reais - usando placeholders
+    console.log('✅ Usando placeholders para todas as imagens - sem testes de carregamento.');
+    const testImages = []; // Não há imagens para testar
     
     testImages.forEach((imgPath, index) => {
         const img = new Image();

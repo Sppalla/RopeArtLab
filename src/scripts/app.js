@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 id: 1,
                 name: 'Corda Amarela e Laranja',
-                images: ['../../images/amarelo e laranja.jpg'],
+                images: [], // Usar placeholder em vez de imagem real
                 description: 'Uma combinação vibrante de amarelo e laranja que traz energia e alegria. Perfeita para atividades ao ar livre e decoração moderna.',
                 sizes: [
                     { size: 'até 50cm', price: 130.00 },
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 id: 2,
                 name: 'Corda Azul Bebê e Chumbo',
-                images: ['../../images/azul bebe e chumbo.jpg', '../../images/azul bebe e chumb 2.jpg'],
+                images: [], // Usar placeholder em vez de imagem real
                 description: 'Elegante mistura de azul suave e chumbo, criando um contraste sofisticado. Ideal para ambientes contemporâneos e minimalistas.',
                 sizes: [
                     { size: 'até 50cm', price: 130.00 },
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 id: 3,
                 name: 'Corda Marinho e Vermelho',
-                images: ['../../images/marinho e vermelho.jpg', '../../images/marinho e vermelho 2.jpg'],
+                images: [], // Usar placeholder em vez de imagem real
                 description: 'Combinação clássica de marinho e vermelho, perfeita para um visual atemporal e elegante.',
                 sizes: [
                     { size: 'até 50cm', price: 130.00 },
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 id: 4,
                 name: 'Corda Militar e Marrom',
-                images: ['../../images/militar e marrom.jpg'],
+                images: [], // Usar placeholder em vez de imagem real
                 description: 'Estilo militar com tons terrosos, ideal para quem busca robustez e durabilidade.',
                 sizes: [
                     { size: 'até 50cm', price: 130.00 },
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 id: 5,
                 name: 'Corda Rosa Bebê e Verde Bebê',
-                images: ['../../images/rosa bebe e verde bebe.jpg', '../../images/rosa bebe e verde bebe .jpg'],
+                images: [], // Usar placeholder em vez de imagem real
                 description: 'Delicada combinação de rosa e verde suaves, perfeita para um visual romântico e natural.',
                 sizes: [
                     { size: 'até 50cm', price: 130.00 },
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 id: 6,
                 name: 'Corda Rosa Pink e Lilás',
-                images: ['../../images/rosa pink e lilas.jpg', '../../images/rosa pink e lilas 2.jpg'],
+                images: [], // Usar placeholder em vez de imagem real
                 description: 'Vibrante mistura de rosa pink e lilás, criando um visual moderno e cheio de personalidade.',
                 sizes: [
                     { size: 'até 50cm', price: 130.00 },
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 id: 7,
                 name: 'Corda Roxo e Laranja',
-                images: ['../../images/roxo e laranja.jpg', '../../images/roxo e laranja 2.jpg', '../../images/roxo e laranja 3.jpg'],
+                images: [], // Usar placeholder em vez de imagem real
                 description: 'Contraste vibrante entre roxo e laranja, perfeito para quem busca originalidade e energia.',
                 sizes: [
                     { size: 'até 50cm', price: 130.00 },
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 id: 8,
                 name: 'Corda Verde e Cinza',
-                images: ['../../images/verde e cinza.jpg', '../../images/verde e cinza 2 .jpg'],
+                images: [], // Usar placeholder em vez de imagem real
                 description: 'Harmonia perfeita entre verde natural e cinza neutro. Uma escolha versátil que combina com qualquer decoração.',
                 sizes: [
                     { size: 'até 50cm', price: 130.00 },
