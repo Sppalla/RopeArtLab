@@ -726,8 +726,8 @@ class AdminSystem {
                     id: 1,
                 name: 'Corda Amarela e Laranja',
                 description: 'Uma combinação vibrante de amarelo e laranja que traz energia e alegria. Perfeita para atividades ao ar livre e decoração moderna.',
-            image: '', // Placeholder em vez de imagem real
-            images: [], // Placeholder em vez de imagem real
+            image: '/images/amarelo e laranja.jpg',
+            images: ['/images/amarelo e laranja.jpg'],
                 category: 'Moderna',
                     stock: 10,
                     active: true,
@@ -746,8 +746,8 @@ class AdminSystem {
                     id: 2,
                 name: 'Corda Azul Bebê e Chumbo',
                 description: 'Elegante mistura de azul suave e chumbo, criando um contraste sofisticado. Ideal para ambientes contemporâneos e minimalistas.',
-                    image: '', // Placeholder em vez de imagem real
-                    images: [], // Placeholder em vez de imagem real
+                    image: '/images/azul bebe e chumbo.jpg',
+                    images: ['/images/azul bebe e chumbo.jpg', '/images/azul bebe e chumb 2.jpg'],
                 category: 'Elegância',
                     stock: 8,
                     active: true,
@@ -766,8 +766,8 @@ class AdminSystem {
                 id: 3,
                 name: 'Corda Marinho e Vermelho',
                 description: 'Combinação clássica e atemporal de azul marinho com vermelho vibrante. Uma peça que nunca sai de moda.',
-                image: '', // Placeholder em vez de imagem real
-                images: [], // Placeholder em vez de imagem real
+                image: '/images/marinho e vermelho.jpg',
+                images: ['/images/marinho e vermelho.jpg', '/images/marinho e vermelho 2.jpg'],
                 category: 'Clássico',
                 stock: 7,
                 active: true,
@@ -786,8 +786,8 @@ class AdminSystem {
                 id: 4,
                 name: 'Corda Militar e Marrom',
                 description: 'Tons terrosos que remetem à natureza e aventura. Perfeita para quem busca um estilo rústico e autêntico.',
-                image: '', // Placeholder em vez de imagem real
-                images: [], // Placeholder em vez de imagem real
+                image: '/images/militar e marrom.jpg',
+                images: ['/images/militar e marrom.jpg'],
                 category: 'Rústico',
                 stock: 5,
                 active: true,
@@ -806,8 +806,8 @@ class AdminSystem {
                 id: 5,
                 name: 'Corda Rosa Bebê e Verde Bebê',
                 description: 'Delicada combinação de rosa e verde pastel, criando um ambiente suave e acolhedor. Ideal para quartos e espaços relaxantes.',
-                image: '', // Placeholder em vez de imagem real
-                images: [], // Placeholder em vez de imagem real
+                image: '/images/rosa bebe e verde bebe.jpg',
+                images: ['/images/rosa bebe e verde bebe.jpg', '/images/rosa bebe e verde bebe .jpg'],
                 category: 'Delicado',
                 stock: 8,
                 active: true,
@@ -826,8 +826,8 @@ class AdminSystem {
                 id: 6,
                 name: 'Corda Rosa Pink e Lilás',
                 description: 'Gradiente romântico de rosa pink para lilás, perfeito para criar um ambiente feminino e elegante.',
-                image: '', // Placeholder em vez de imagem real
-                images: [], // Placeholder em vez de imagem real
+                image: '/images/rosa pink e lilas.jpg',
+                images: ['/images/rosa pink e lilas.jpg', '/images/rosa pink e lilas 2.jpg'],
                 category: 'Romântico',
                 stock: 6,
                 active: true,
@@ -846,8 +846,8 @@ class AdminSystem {
                 id: 7,
                 name: 'Corda Roxo e Laranja',
                 description: 'Combinação vibrante e moderna de roxo profundo com laranja energético. Uma peça que chama atenção e adiciona personalidade ao ambiente.',
-                image: '', // Placeholder em vez de imagem real
-                images: [], // Placeholder em vez de imagem real
+                image: '/images/roxo e laranja .jpg',
+                images: ['/images/roxo e laranja .jpg', '/images/roxo e laranja 2.jpg', '/images/roxo e laranja 3.jpg'],
                 category: 'Moderno',
                 stock: 9,
                 active: true,
@@ -866,8 +866,8 @@ class AdminSystem {
                 id: 8,
                 name: 'Corda Verde e Cinza',
                 description: 'Harmonia perfeita entre verde natural e cinza neutro. Uma escolha versátil que combina com qualquer decoração.',
-                image: '', // Placeholder em vez de imagem real
-                images: [], // Placeholder em vez de imagem real
+                image: '/images/verde e cinza.jpg',
+                images: ['/images/verde e cinza.jpg', '/images/verde e cinza 2 .jpg'],
                 category: 'Versátil',
                 stock: 12,
                 active: true,
@@ -908,10 +908,7 @@ class AdminSystem {
         productsGrid.innerHTML = products.map(product => `
             <div class="product-card-admin" data-product-id="${product.id}">
                 <div class="product-image-container">
-                    <div class="image-placeholder product-image-placeholder">
-                        <span class="icon">🧶</span>
-                        <span class="text">${product.name}</span>
-                    </div>
+                    <img src="${product.images && product.images[0] ? product.images[0] : product.image}" alt="${product.name}" class="product-image">
                     <div class="product-status ${product.active ? 'active' : 'inactive'}">
                         ${product.active ? 'Ativo' : 'Inativo'}
                     </div>
