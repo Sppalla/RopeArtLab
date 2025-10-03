@@ -2134,10 +2134,7 @@ window.showTrash = function() {
             return `
                 <div class="trash-item ${isExpired ? 'expired' : ''}">
                     <div class="trash-item-header">
-                        <div class="image-placeholder product-image-placeholder" style="width: 60px; height: 60px; min-height: 60px;">
-                            <span class="icon">🗑️</span>
-                            <span class="text">${item.name}</span>
-                        </div>
+                        <img src="${item.image || item.images?.[0] || '/images/exemplo 1.jpg'}" alt="${item.name}" class="trash-item-image" style="width: 60px; height: 60px; object-fit: cover; border-radius: 5px;">
                         <div class="trash-item-info">
                             <h4>${item.name}</h4>
                             <p>${item.category}</p>

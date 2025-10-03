@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 id: 3,
                 name: 'Corda Marinho e Vermelho',
-                images: ['/images/marinho e vermelho.jpg', '/images/marinho e vermelho 2 .jpg'],
+                images: ['/images/marinho e vermelho.jpg', '/images/marinho e vermelho 2.jpg'],
                 description: 'Combinação clássica de marinho e vermelho, perfeita para um visual atemporal e elegante.',
                 sizes: [
                     { size: 'até 50cm', price: 130.00 },
@@ -1453,7 +1453,7 @@ window.handleLogin = function() {
         
         // Redirecionar para admin
         setTimeout(() => {
-            window.location.href = 'admin.html';
+        window.location.href = 'admin.html';
         }, 600);
         return;
     }
@@ -1466,7 +1466,7 @@ window.handleLogin = function() {
     if (users.length === 0) {
         console.log('❌ Nenhum usuário cadastrado encontrado');
         showNotification('Nenhum usuário cadastrado encontrado! Cadastre-item primeiro.', 'error');
-        return;
+            return;
     }
     
     console.log('📋 Usuários disponíveis:');
@@ -1490,8 +1490,8 @@ window.handleLogin = function() {
         console.log('✅ Usuário encontrado:', user.nome);
         
         // Salvar como usuário atual
-        localStorage.setItem('ropeartlab_current_user', JSON.stringify(user));
-        
+    localStorage.setItem('ropeartlab_current_user', JSON.stringify(user));
+    
         // Limpar formulário
         document.getElementById('login-email').value = '';
         document.getElementById('login-password').value = '';

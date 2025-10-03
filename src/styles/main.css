@@ -356,6 +356,10 @@ body {
     border-color: #5D2E0A;
 }
 
+.product-card:hover .product-image-container {
+    border-color: #B8860B; /* Tom dourado mais claro no hover */
+}
+
 .product-image {
     width: 100%;
     height: 320px;
@@ -387,6 +391,7 @@ body {
     position: relative;
     flex-shrink: 0;
     border-radius: 20px 20px 0 0;
+    border: 2px solid #D4A574; /* Tom caramelo */
 }
 
 /* Setas de navegação para imagens */
