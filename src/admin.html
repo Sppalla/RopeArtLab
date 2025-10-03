@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - RopeArtLab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header do Admin -->
+    <header class="admin-header">
+        <div class="admin-header-content">
+            <div class="admin-logo">
+                <img src="../images/logo.jpg" alt="RopeArtLab Logo" class="admin-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-placeholder" style="display: none;">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="admin-brand">
+                    <h1>RopeArtLab</h1>
+                    <span>Painel Administrativo</span>
+                </div>
+            </div>
+            <div class="admin-user-info">
+                <div class="admin-user-details">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Administrador</span>
+                </div>
+                <button class="admin-logout-btn" onclick="logoutAdmin()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Sair
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar de Navegação -->
+    <nav class="admin-sidebar" id="admin-sidebar">
+        <div class="sidebar-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="admin-nav">
+            <div class="nav-section">
+                <h3>Gerenciamento</h3>
+                <ul class="nav-menu">
+                    <li class="nav-item active" data-tab="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </li>
+                    <li class="nav-item" data-tab="products">
+                        <i class="fas fa-box"></i>
+                        <span>Produtos</span>
+                    </li>
+                    <li class="nav-item" data-tab="clients">
+                        <i class="fas fa-users"></i>
+                        <span>Clientes</span>
+                    </li>
+                    <li class="nav-item" data-tab="orders">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Pedidos</span>
+                    </li>
+                    <li class="nav-item" data-tab="analytics">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Análises</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>Configurações</h3>
+                <ul class="nav-menu">
+                    <li class="nav-item" data-tab="content">
+                        <i class="fas fa-edit"></i>
+                        <span>Conteúdo do Site</span>
+                    </li>
+                    <li class="nav-item" data-tab="contact">
+                        <i class="fas fa-phone"></i>
+                        <span>Contato</span>
+                    </li>
+                    <li class="nav-item" data-tab="images">
+                        <i class="fas fa-images"></i>
+                        <span>Imagens</span>
+                    </li>
+                    <li class="nav-item" data-tab="site-preview">
+                        <i class="fas fa-eye"></i>
+                        <span>Preview do Site</span>
+                    </li>
+                    <li class="nav-item" data-tab="settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Configurações</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="admin-main">
+        <!-- Dashboard -->
+        <div id="dashboard-tab" class="admin-tab active">
+            <div class="tab-header">
+                <h2><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+                <p>Visão geral do sistema</p>
+            </div>
+            
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="total-clients">0</h3>
+                        <p>Total de Clientes</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="total-products">0</h3>
+                        <p>Total de Produtos</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="total-orders">0</h3>
+                        <p>Total de Pedidos</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="total-revenue">R$ 0,00</h3>
+                        <p>Receita Total</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-charts">
+                <div class="chart-container">
+                    <h3>Pedidos Recentes</h3>
+                    <div id="recent-orders" class="recent-orders-list">
+                        <!-- Pedidos serão carregados aqui -->
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Clientes Recentes</h3>
+                    <div id="recent-clients" class="recent-clients-list">
+                        <!-- Clientes serão carregados aqui -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gerenciamento de Produtos -->
+        <div id="products-tab" class="admin-tab">
+            <div class="tab-header">
+                <h2><i class="fas fa-box"></i> Gerenciamento de Produtos</h2>
+                <div class="products-controls">
+                    <button class="btn-primary" onclick="addNewProductCard()">
+                        <i class="fas fa-plus"></i>
+                        Novo Produto
+                    </button>
+                    <button class="btn-secondary" onclick="saveAllProducts()">
+                        <i class="fas fa-save"></i>
+                        Salvar Todos
+                    </button>
+                    <button class="btn-warning" onclick="showTrash()">
+                        <i class="fas fa-trash"></i>
+                        Ver Lixeira
+                    </button>
+                </div>
+            </div>
+            
+            <div class="products-grid" id="products-grid">
+                <!-- Produtos serão carregados aqui -->
+            </div>
+        </div>
+
+        <!-- Gerenciamento de Clientes -->
+        <div id="clients-tab" class="admin-tab">
+            <div class="tab-header">
+                <h2><i class="fas fa-users"></i> Gerenciamento de Clientes</h2>
+                <div class="search-box">
+                    <input type="text" id="client-search" placeholder="Buscar cliente...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            
+            <div class="clients-table-container">
+                <table class="clients-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>CPF/CNPJ</th>
+                            <th>Telefone</th>
+                            <th>Data de Cadastro</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clients-table-body">
+                        <!-- Clientes serão carregados aqui -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Gerenciamento de Pedidos -->
+        <div id="orders-tab" class="admin-tab">
+            <div class="tab-header">
+                <h2><i class="fas fa-shopping-cart"></i> Gerenciamento de Pedidos</h2>
+                <div class="filter-box">
+                    <select id="order-status-filter">
+                        <option value="">Todos os Status</option>
+                        <option value="pending">Pendente de Aprovação</option>
+                        <option value="approved">Aprovado</option>
+                        <option value="finalized">Finalizado</option>
+                        <option value="cancelled">Cancelado</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="orders-table-container">
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>Pedido #</th>
+                            <th>Cliente</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                            <th>Produtos</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table-body">
+                        <!-- Pedidos serão carregados aqui -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Análises e Gráficos -->
+        <div id="analytics-tab" class="admin-tab">
+            <div class="tab-header">
+                <h2><i class="fas fa-chart-line"></i> Análises Financeiras Avançadas</h2>
+                <div class="analytics-controls">
+                    <select id="analytics-period" onchange="adminSystem.updateAnalytics()">
+                        <option value="7">Últimos 7 dias</option>
+                        <option value="30" selected>Últimos 30 dias</option>
+                        <option value="90">Últimos 90 dias</option>
+                        <option value="all">Todos os tempos</option>
+                    </select>
+                    <button class="btn-secondary" onclick="adminSystem.refreshAnalytics()">
+                        <i class="fas fa-sync"></i>
+                        Atualizar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h3>Produtos Mais Vendidos</h3>
+                    <div class="chart-container">
+                        <canvas id="salesChart" width="400" height="300"></canvas>
+                    </div>
+                </div>
+                
+                <div class="analytics-card">
+                    <h3>Estatísticas de Vendas</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="total-sales">R$ 0,00</div>
+                            <div class="stat-label">Total de Vendas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="total-orders">0</div>
+                            <div class="stat-label">Pedidos Realizados</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="avg-order-value">R$ 0,00</div>
+                            <div class="stat-label">Ticket Médio</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="top-product">-</div>
+                            <div class="stat-label">Produto Top</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analytics-card">
+                    <h3>Vendas por Produto</h3>
+                    <div class="product-sales-list" id="product-sales-list">
+                        <!-- Lista será gerada dinamicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edição de Conteúdo -->
+        <div id="content-tab" class="admin-tab">
+            <div class="tab-header">
+                <h2><i class="fas fa-edit"></i> Edição de Conteúdo do Site</h2>
+                <button class="btn-secondary" onclick="saveContent()">
+                    <i class="fas fa-save"></i>
+                    Salvar Alterações
+                </button>
+            </div>
+            
+            <div class="content-editor">
+                <div class="editor-section">
+                    <h3>Seção Hero</h3>
+                    <div class="form-group">
+                        <label for="hero-title">Título Principal</label>
+                        <input type="text" id="hero-title" value="Produtos Artesanais para Seu Pet">
+                    </div>
+                    <div class="form-group">
+                        <label for="hero-subtitle">Subtítulo</label>
+                        <textarea id="hero-subtitle" rows="3">Descubra nossa coleção exclusiva de produtos artesanais feitos com amor para o seu melhor amigo.</textarea>
+                    </div>
+                </div>
+                
+                <div class="editor-section">
+                    <h3>Seção Sobre</h3>
+                    <div class="form-group">
+                        <label for="about-title">Título da Seção</label>
+                        <input type="text" id="about-title" value="Sobre Nós">
+                    </div>
+                    <div class="form-group">
+                        <label for="about-content">Conteúdo</label>
+                        <textarea id="about-content" rows="5">Somos uma empresa especializada em produtos artesanais para pets, criados com muito carinho e atenção aos detalhes.</textarea>
+                    </div>
+                </div>
+                
+                <div class="editor-section">
+                    <h3>Rodapé</h3>
+                    <div class="form-group">
+                        <label for="footer-text">Texto do Rodapé</label>
+                        <input type="text" id="footer-text" value="© 2024 RopeArtLab. Todos os direitos reservados.">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gerenciamento de Contato -->
+        <div id="contact-tab" class="admin-tab">
+            <div class="tab-header">
+                <h2><i class="fas fa-phone"></i> Configurações de Contato</h2>
+                <button class="btn-secondary" onclick="saveContactSettings()">
+                    <i class="fas fa-save"></i>
+                    Salvar Configurações
+                </button>
+            </div>
+            
+            <div class="contact-settings">
+                <div class="form-group">
+                    <label for="whatsapp-number">Número do WhatsApp</label>
+                    <input type="text" id="whatsapp-number" value="555191055765" placeholder="Ex: 555191055765">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email-contact">Email de Contato</label>
+                    <input type="email" id="email-contact" value="contato@ropeartlab.com" placeholder="contato@ropeartlab.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone-contact">Telefone de Contato</label>
+                    <input type="text" id="phone-contact" value="(51) 99999-9999" placeholder="(51) 99999-9999">
+                </div>
+                
+                <div class="form-group">
+                    <label for="address-contact">Endereço</label>
+                    <textarea id="address-contact" rows="3" placeholder="Endereço completo da empresa"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gerenciamento de Imagens -->
+        <div id="images-tab" class="admin-tab">
+            <div class="tab-header">
+                <h2><i class="fas fa-images"></i> Gerenciamento de Imagens</h2>
+                <button class="btn-primary" onclick="openImageUploadModal()">
+                    <i class="fas fa-upload"></i>
+                    Upload de Imagem
+                </button>
+            </div>
+            
+            <div class="images-grid" id="images-grid">
+                <!-- Imagens serão carregadas aqui -->
+            </div>
+        </div>
+
+        <!-- Preview do Site -->
+        <div id="site-preview-tab" class="admin-tab">
+            <div class="tab-header">
+                <h2><i class="fas fa-eye"></i> Preview do Site</h2>
+                <div class="preview-controls">
+                    <button class="btn-secondary" onclick="refreshSitePreview()">
+                        <i class="fas fa-sync"></i>
+                        Atualizar Preview
+                    </button>
+                    <button class="btn-primary" onclick="openSiteInNewTab()">
+                        <i class="fas fa-external-link-alt"></i>
+                        Abrir Site
+                    </button>
+                </div>
+            </div>
+            
+            <div class="site-preview-container">
+                <div class="preview-frame">
+                    <iframe id="site-preview-frame" src="index.html" frameborder="0"></iframe>
+                </div>
+                
+                <div class="preview-editor">
+                    <h3>Editar Conteúdo do Site</h3>
+                    
+                    <div class="editor-section">
+                        <h4>Seção Hero</h4>
+                        <div class="form-group">
+                            <label for="preview-hero-title">Título Principal</label>
+                            <input type="text" id="preview-hero-title" value="Produtos Artesanais para Seu Pet">
+                        </div>
+                        <div class="form-group">
+                            <label for="preview-hero-subtitle">Subtítulo</label>
+                            <textarea id="preview-hero-subtitle" rows="3">Descubra nossa coleção exclusiva de produtos artesanais feitos com amor para o seu melhor amigo.</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <h4>Seção Sobre</h4>
+                        <div class="form-group">
+                            <label for="preview-about-title">Título da Seção</label>
+                            <input type="text" id="preview-about-title" value="Sobre Nós">
+                        </div>
+                        <div class="form-group">
+                            <label for="preview-about-content">Conteúdo</label>
+                            <textarea id="preview-about-content" rows="4">Somos uma empresa especializada em produtos artesanais para pets, criados com muito carinho e atenção aos detalhes.</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <h4>Rodapé</h4>
+                        <div class="form-group">
+                            <label for="preview-footer-text">Texto do Rodapé</label>
+                            <input type="text" id="preview-footer-text" value="© 2024 RopeArtLab. Todos os direitos reservados.">
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary" onclick="saveSiteContent()">
+                        <i class="fas fa-save"></i>
+                        Salvar Alterações
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configurações Gerais -->
+        <div id="settings-tab" class="admin-tab">
+            <div class="tab-header">
+                <h2><i class="fas fa-cog"></i> Configurações Gerais</h2>
+                <button class="btn-secondary" onclick="saveSettings()">
+                    <i class="fas fa-save"></i>
+                    Salvar Configurações
+                </button>
+            </div>
+            
+            <div class="settings-sections">
+                <div class="settings-section">
+                    <h3>Configurações do Site</h3>
+                    <div class="form-group">
+                        <label for="site-title">Título do Site</label>
+                        <input type="text" id="site-title" value="RopeArtLab - Produtos Artesanais para Pets">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="site-description">Descrição do Site</label>
+                        <textarea id="site-description" rows="3">Loja online especializada em produtos artesanais para pets</textarea>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3>Configurações de Segurança</h3>
+                    <div class="form-group">
+                        <label for="admin-email">Email do Administrador</label>
+                        <input type="email" id="admin-email" value="admin@gmail.com" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="admin-password">Nova Senha do Administrador</label>
+                        <input type="password" id="admin-password" placeholder="Deixe em branco para manter a senha atual">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Produto -->
+    <div id="product-modal" class="admin-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="product-modal-title">Adicionar Produto</h3>
+                <button class="close-modal" onclick="closeProductModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="product-form" onsubmit="saveProduct(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product-name">Nome do Produto *</label>
+                        <input type="text" id="product-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Preço *</label>
+                        <input type="number" id="product-price" step="0.01" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-description">Descrição</label>
+                    <textarea id="product-description" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-category-tag">Adjetivo/Categoria</label>
+                    <input type="text" id="product-category-tag" placeholder="Ex: Moderna, Elegância, Clássico">
+                    <small class="field-help">Palavra-chave que aparece na etiqueta do produto</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>Imagens do Produto</label>
+                    <div class="images-upload-container">
+                        <div class="images-grid" id="product-images-grid">
+                            <!-- Imagens serão adicionadas aqui -->
+                        </div>
+                        <div class="add-image-container">
+                            <input type="file" id="product-image-file" accept="image/*" multiple onchange="addProductImages(event)" style="display: none;">
+                            <button type="button" class="btn-secondary" onclick="document.getElementById('product-image-file').click()">
+                                <i class="fas fa-plus"></i>
+                                Adicionar Imagens
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-category">Categoria</label>
+                    <select id="product-category">
+                        <option value="brinquedos">Brinquedos</option>
+                        <option value="acessorios">Acessórios</option>
+                        <option value="roupas">Roupas</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="product-stock">Estoque</label>
+                    <input type="number" id="product-stock" value="0" min="0">
+                </div>
+                
+                <div class="form-group">
+                    <label>Tamanhos e Preços</label>
+                    <div class="sizes-prices-container" id="sizes-prices-container">
+                        <div class="size-price-item">
+                            <div class="size-input-group">
+                                <label>Tamanho:</label>
+                                <input type="text" class="size-input" placeholder="Ex: até 50cm" value="até 50cm">
+                            </div>
+                            <div class="price-input-group">
+                                <label>Preço:</label>
+                                <input type="number" class="price-input" placeholder="0.00" step="0.01" value="130.00" onchange="updateMainPriceFromSizes()">
+                            </div>
+                            <button type="button" class="remove-size-btn" onclick="removeSizeItem(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        <div class="size-price-item">
+                            <div class="size-input-group">
+                                <label>Tamanho:</label>
+                                <input type="text" class="size-input" placeholder="Ex: 60cm" value="60cm">
+                            </div>
+                            <div class="price-input-group">
+                                <label>Preço:</label>
+                                <input type="number" class="price-input" placeholder="0.00" step="0.01" value="140.00" onchange="updateMainPriceFromSizes()">
+                            </div>
+                            <button type="button" class="remove-size-btn" onclick="removeSizeItem(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        <div class="size-price-item">
+                            <div class="size-input-group">
+                                <label>Tamanho:</label>
+                                <input type="text" class="size-input" placeholder="Ex: 90cm" value="90cm">
+                            </div>
+                            <div class="price-input-group">
+                                <label>Preço:</label>
+                                <input type="number" class="price-input" placeholder="0.00" step="0.01" value="150.00" onchange="updateMainPriceFromSizes()">
+                            </div>
+                            <button type="button" class="remove-size-btn" onclick="removeSizeItem(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        <div class="size-price-item">
+                            <div class="size-input-group">
+                                <label>Tamanho:</label>
+                                <input type="text" class="size-input" placeholder="Ex: Personalizado" value="Personalizado">
+                            </div>
+                            <div class="price-input-group">
+                                <label>Preço:</label>
+                                <input type="text" class="price-input" placeholder="Ex: Entre em contato" value="Entre em contato direto com o vendedor." onchange="updateMainPriceFromSizes()">
+                            </div>
+                            <button type="button" class="remove-size-btn" onclick="removeSizeItem(this)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-secondary" onclick="addSizeItem()">
+                        <i class="fas fa-plus"></i>
+                        Adicionar Tamanho
+                    </button>
+                </div>
+                
+                <div class="checkbox-buttons-container">
+                    <div class="checkbox-buttons-row">
+                        <div class="checkbox-button" onclick="toggleCheckbox('product-active')">
+                            <input type="checkbox" id="product-active">
+                            <div class="checkbox-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <span class="checkbox-label">Produto Ativo</span>
+                        </div>
+                        <div class="checkbox-button" onclick="toggleCheckbox('product-featured')">
+                            <input type="checkbox" id="product-featured">
+                            <div class="checkbox-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="checkbox-label">Produto em Destaque</span>
+                        </div>
+                    </div>
+                    <div class="checkbox-button" onclick="toggleCheckbox('product-discount-enabled')">
+                        <input type="checkbox" id="product-discount-enabled" onchange="toggleDiscountFields()">
+                        <div class="checkbox-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <span class="checkbox-label">Aplicar Desconto</span>
+                    </div>
+                </div>
+                
+                <div class="discount-section" id="discount-section" style="display: none;">
+                    <div class="discount-header">
+                        <h4><i class="fas fa-percentage"></i> Configuração de Desconto</h4>
+                    </div>
+                    
+                    <div class="discount-content">
+                        <div class="discount-input-group">
+                            <label for="product-discount-percentage">Percentual de Desconto</label>
+                            <div class="discount-input-container">
+                                <input type="number" id="product-discount-percentage" min="0" max="99" value="0" onchange="calculateDiscount()">
+                                <span class="discount-symbol">%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="discount-preview">
+                            <div class="price-comparison">
+                                <div class="original-price">
+                                    <span class="price-label">Preço Original:</span>
+                                    <span class="price-value" id="original-price-display">R$ 0,00</span>
+                                </div>
+                                <div class="discounted-price">
+                                    <span class="price-label">Preço com Desconto:</span>
+                                    <span class="price-value" id="discounted-price-display">R$ 0,00</span>
+                                </div>
+                                <div class="savings">
+                                    <span class="savings-label">Você economiza:</span>
+                                    <span class="savings-value" id="savings-display">R$ 0,00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeProductModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar Produto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal da Lixeira -->
+    <div id="trash-modal" class="admin-modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-trash"></i> Lixeira de Produtos</h3>
+                <button class="close-modal" onclick="closeTrashModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="trash-content">
+                <div class="trash-info">
+                    <p>Produtos excluídos ficam na lixeira por 30 dias antes de serem removidos permanentemente.</p>
+                </div>
+                
+                <div class="trash-grid" id="trash-grid">
+                    <!-- Itens da lixeira serão carregados aqui -->
+                </div>
+                
+                <div class="trash-empty" id="trash-empty" style="display: none;">
+                    <div class="empty-state">
+                        <i class="fas fa-trash-alt"></i>
+                        <h3>Lixeira Vazia</h3>
+                        <p>Não há produtos na lixeira.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Upload de Imagem -->
+    <div id="image-upload-modal" class="admin-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Upload de Imagem</h3>
+                <button class="close-modal" onclick="closeImageUploadModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="image-upload-form" onsubmit="uploadImage(event)">
+                <div class="form-group">
+                    <label for="image-file">Selecionar Imagem</label>
+                    <input type="file" id="image-file" accept="image/*" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="image-name">Nome da Imagem</label>
+                    <input type="text" id="image-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="image-description">Descrição</label>
+                    <textarea id="image-description" rows="2"></textarea>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeImageUploadModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Detalhes do Cliente -->
+    <div id="client-details-modal" class="admin-modal">
+        <div class="modal-content client-details-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-circle"></i> Detalhes do Cliente</h3>
+                <button class="close-modal" onclick="closeClientDetailsModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="client-info-card">
+                    <div class="client-header">
+                        <div class="client-avatar">
+                            🐾
+                        </div>
+                        <div class="client-basic-info">
+                            <h3 id="client-name">Nome do Cliente</h3>
+                            <p id="client-email" class="client-email">📧 email@exemplo.com</p>
+                        </div>
+                        <div class="client-status">
+                            <span class="status-badge active">✅ Cliente Ativo</span>
+                        </div>
+                    </div>
+                    
+                    <div class="client-details-grid">
+                        <div class="detail-group">
+                            <div class="detail-item">
+                                <label>🆔 CPF/CNPJ</label>
+                                <span id="client-cpf">000.000.000-00</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>📞 Telefone</label>
+                                <span id="client-phone">(00) 00000-0000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-group">
+                            <div class="detail-item">
+                                <label>📮 CEP</label>
+                                <span id="client-cep">00000-000</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>🏠 Endereço</label>
+                                <span id="client-address">Endereço Completo</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-group">
+                            <div class="detail-item">
+                                <label>📅 Data de Cadastro</label>
+                                <span id="client-registration">00/00/0000</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>🏙️ Cidade/Estado</label>
+                                <span id="client-location">Cidade - Estado</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="client-footer">
+                        <button class="btn btn-orders" onclick="viewClientOrdersFromModal()">
+                            🛒 Ver Pedidos
+                        </button>
+                        <button class="btn btn-delete" onclick="deleteClientFromModal()">
+                            🗑️ Excluir Cliente
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/api-client.js"></script>
+    <script src="scripts/admin.js"></script>
+</body>
+</html>

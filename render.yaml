@@ -1,0 +1,53 @@
+# Render.com Service Configuration
+# Deploy automático para RopeArtLab
+
+services:
+  - type: web
+    name: ropeartlab-web
+    repo: https://github.com/USERNAME/ropeartlab-repo # Substituir pelo seu repositório
+    branch: main
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: ADMIN_TOKEN
+        value: ropeartlab-admin-2024-change-me
+      - key: JWT_SECRET
+        value: super_secret_jwt_key_change_in_production_123456789
+      - key: BCRYPT_ROUNDS
+        value: 12
+      - key: RATE_CHARGE_WINDOW_MS
+        value: 900000
+      - key: RATE_LIMIT_MAX_REQUESTS
+        value: 100
+      # Database URL será configurado via dashboard
+    
+  - type: pgsql
+    name: ropeartlab-db
+    databaseName: ropeartlab_db
+    user: ropeartlab_user
+    
+# Configuração de rede
+networking:
+  headers:
+    - name: X-Frame-Options
+      value: DENY
+    - name: X-Content-Type-Options
+      value: nosniff
+    - name: Strict-Transport-Security
+      value: max-age=31536000; includeSubDomains
+      
+# Configurações específicas do Render
+render:
+  plan: starter
+  region: oregon-us-west
+  autoDeploy: true
+  healthCheckPath: /api/health
+  
+# Scripts de build
+buildScripts:
+  postInstall: echo "Build completed successfully"
+  preStart: echo "Starting RopeArtLab..."
