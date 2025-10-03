@@ -32,7 +32,7 @@ app.use('/api/', limiter);
 // CORS Configuration
 app.use(cors({
     origin: process.env.NODE_ENV === 'production' 
-        ? ['https://pet-sales-catalog.onrender.com', process.env.FRONTEND_URL]
+        ? ['https://ropeartlabs.onrender.com', process.env.FRONTEND_URL]
         : ['http://localhost:3000', 'http://127.0.0.1:3000'],
     credentials: true
 }));

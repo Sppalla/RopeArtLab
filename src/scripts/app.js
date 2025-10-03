@@ -694,42 +694,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const patterns = imagePatterns[productName];
         if (patterns) {
             patterns.forEach(pattern => {
-                // Adicionar imagem principal
-                relatedImages.push(`../../images/${pattern}.jpg`);
-                
-                // Adicionar variações numeradas (2, 3, etc.)
-                for (let i = 2; i <= 5; i++) {
-                    relatedImages.push(`../../images/${pattern} ${i}.jpg`);
-                }
-                
-                // Adicionar variação com espaço extra
-                relatedImages.push(`../../images/${pattern} .jpg`);
+                // Não adicionar mais imagens reais - usar placeholders
+                console.log(`📱 Usando placeholder para: ${pattern}`);
             });
         }
         
-        // Filtrar apenas imagens que existem (baseado na lista de imagens disponíveis)
-        const availableImages = [
-            'amarelo e laranja.jpg',
-            'azul bebe e chumbo.jpg',
-            'azul bebe e chumb 2.jpg',
-            'marinho e vermelho.jpg',
-            'marinho e vermelho 2.jpg',
-            'militar e marrom.jpg',
-            'rosa bebe e verde bebe.jpg',
-            'rosa bebe e verde bebe .jpg',
-            'rosa pink e lilas.jpg',
-            'rosa pink e lilas 2.jpg',
-            'roxo e laranja.jpg',
-            'roxo e laranja 2.jpg',
-            'roxo e laranja 3.jpg',
-            'verde e cinza.jpg',
-            'verde e cinza 2 .jpg'
-        ];
-        
-        return relatedImages.filter(img => {
-            const fileName = img.replace('../../images/', '');
-            return availableImages.includes(fileName);
-        });
+        // Não filtrar mais imagens - usar placeholders
+        console.log(`📱 Retornando placeholder para produto: ${productName}`);
+        return []; // Retornar array vazio para usar placeholder
     }
 
     // Função para renderizar todos os produtos

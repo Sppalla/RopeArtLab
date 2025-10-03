@@ -122,21 +122,7 @@ img[src*="images/"] {
     margin-top: 5px;
 }
 
-/* Logo específico */
-.logo[src*="images/logo.jpg"] {
-    background: linear-gradient(45deg, #74b9ff, #0984e3);
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo[src*="images/logo.jpg"]:before {
-    content: "🎨";
-    margin-right: 8px;
-}
+/* Logo específico - removido pois agora usa placeholder CSS */
 
 /* Produtos específicos */
 .product-image[src*="images/"] {

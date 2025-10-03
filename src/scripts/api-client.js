@@ -16,7 +16,7 @@ const API_CONFIG = {
     // URL da API (detecta automaticamente se local ou produção)
     baseURL: window.location.protocol === 'file:' 
         ? 'http://localhost:3000/api' 
-        : 'https://ropeartlab-api.onrender.com/api',
+        : '/api', // Usar API local no mesmo domínio
     
     // Timeout para requests
     timeout: 5000,
