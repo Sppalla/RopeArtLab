@@ -61,9 +61,12 @@
 /* Splash específico */
 .splash-placeholder {
     background: linear-gradient(135deg, #00cec9, #55a3ff);
-    place-content: 300px;
+    width: 100%;
+    height: 300px;
     border-radius: 20px;
-    min-height: 250px;
+    min-height: 300px;
+    position: relative;
+    z-index: 1;
 }
 
 .splash-placeholder .icon {

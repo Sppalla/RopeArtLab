@@ -182,21 +182,27 @@ body {
     transition: transform 0.3s ease;
 }
 
-.splash-image-container:hover .splash-image {
+.splash-image-container:hover .splash-placeholder {
     transform: scale(1.05);
+}
+
+.splash-image-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
 }
 
 .splash-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(205, 133, 63, 0.1) 100%);
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    background: transparent;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
 .splash-badge {
@@ -681,6 +687,9 @@ body {
     margin-bottom: 15px;
     line-height: 1.6;
     flex-grow: 1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .product-price {
